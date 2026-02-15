@@ -9,6 +9,8 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <title>Manifesto | Open Game Stack</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
+
         /* --- REUSING CORE STYLES --- */
         * {
             margin: 0;
@@ -17,10 +19,26 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
             background-color: #0b0f19;
+            background-image: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+                radial-gradient(circle at 70% 0%, rgba(59, 130, 246, 0.15), transparent 45%);
             color: #e0e6ed;
             line-height: 1.8;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 0;
         }
 
         a {
@@ -34,12 +52,23 @@
             --secondary: #64748b;
             --bg-dark: #0f172a;
             --card-bg: #1e293b;
+            --grid-line: rgba(148, 163, 184, 0.2);
+            --outline: rgba(226, 232, 240, 0.2);
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 200px;
+            gap: 40px;
+            align-items: start;
         }
 
         /* --- HEADER --- */
@@ -57,6 +86,7 @@
             font-size: 1.2rem;
             color: white;
             letter-spacing: -0.5px;
+            font-family: "Space Grotesk", "Segoe UI", sans-serif;
         }
 
         .logo span {
@@ -67,10 +97,33 @@
             color: var(--secondary);
             font-size: 0.9rem;
             font-weight: 500;
+            font-family: "IBM Plex Mono", "Segoe UI", monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .back-link:hover {
             color: var(--primary);
+        }
+
+        .eyebrow {
+            font-family: "IBM Plex Mono", "Segoe UI", monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.2rem;
+        }
+
+        .eyebrow::before,
+        .eyebrow::after {
+            content: "";
+            height: 1px;
+            width: 24px;
+            background: var(--grid-line);
         }
 
         /* --- CONTENT --- */
@@ -82,6 +135,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-family: "Space Grotesk", "Segoe UI", sans-serif;
         }
 
         .intro {
@@ -98,6 +152,7 @@
             color: white;
             margin-top: 3rem;
             margin-bottom: 1rem;
+            font-family: "Space Grotesk", "Segoe UI", sans-serif;
         }
 
         p {
@@ -108,6 +163,50 @@
 
         strong {
             color: var(--primary);
+        }
+
+        .section-index {
+            position: sticky;
+            top: 30px;
+            border-left: 1px solid var(--outline);
+            padding-left: 16px;
+        }
+
+        .section-index .label {
+            font-family: "IBM Plex Mono", "Segoe UI", monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-index a {
+            display: block;
+            color: #cbd5f5;
+            font-size: 0.9rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .section-index a:hover {
+            color: var(--primary);
+        }
+
+        .closing {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            padding: 2rem 1.5rem;
+            font-style: italic;
+            opacity: 0.85;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            text-align: center;
         }
 
         /* --- FOOTER --- */
@@ -128,6 +227,18 @@
             .intro {
                 font-size: 1.2rem;
             }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .section-index {
+                position: static;
+                border-left: none;
+                border-top: 1px solid var(--outline);
+                padding-left: 0;
+                padding-top: 20px;
+            }
         }
     </style>
 </head>
@@ -140,8 +251,10 @@
             <a href="index.html" class="back-link">← Back to Home</a>
         </header>
 
-        <article>
-            <h1>The Declaration of Digital Sovereignty</h1>
+        <div class="layout">
+            <article>
+                <div class="eyebrow">Manifesto</div>
+                <h1>The Declaration of Digital Sovereignty</h1>
 
             <div class="intro">
                 We believe that the tools used to build the future should not be rented. They should be owned.
@@ -153,34 +266,41 @@
 
             <p>We propose a new standard. A standard where the environment is as permanent as the file itself.</p>
 
-            <h2>I. Sovereignty Over Subscription</h2>
+            <h2 id="sovereignty">I. Sovereignty Over Subscription</h2>
             <p>Creativity requires stability. If you build a world, you must own the god-tools that sustain it. We
                 reject the model where access to your own work is contingent on a monthly fee or a server
                 authentication. <strong>Open Game Stack</strong> is built on tools that can run offline, forever,
                 without permission.</p>
 
-            <h2>II. The Environment is the Artifact</h2>
+            <h2 id="environment">II. The Environment is the Artifact</h2>
             <p>Source code without the correct compiler is just text. A game asset without the correct version of
                 Blender is just geometry. To truly preserve a project, we must version-control the <strong>entire
                     studio</strong>. When you clone an Open Game Stack repository, you don't just get the game; you get
                 the exact, frozen tools required to build it.</p>
 
-            <h2>III. Dual-Use by Design</h2>
+            <h2 id="dual-use">III. Dual-Use by Design</h2>
             <p>What serves the indie developer serves the nation. The indie developer needs low cost and high agility.
                 The nation needs security, modularity, and no vendor lock-in. By aligning these needs, we create a stack
                 that is robust enough for the battlefield and accessible enough for the basement coder.</p>
 
-            <h2>IV. Stability is a Feature</h2>
+            <h2 id="stability">IV. Stability is a Feature</h2>
             <p>Innovation is useless if it breaks the pipeline. We prioritize <strong>Long-Term Support (LTS)</strong>
                 and "Bill of Materials" compliance over chasing the latest shiny feature. We provide a known, vetted,
                 and frozen state that allows teams to scale without "dependency hell."</p>
 
-            <br>
-            <p
-                style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-style: italic; opacity: 0.8;">
+            <div class="closing">
                 This is our promise: To build a foundation that does not move beneath your feet.
-            </p>
+            </div>
         </article>
+
+        <aside class="section-index">
+            <span class="label">Sections</span>
+            <a href="#sovereignty">Sovereignty Over Subscription</a>
+            <a href="#environment">The Environment is the Artifact</a>
+            <a href="#dual-use">Dual-Use by Design</a>
+            <a href="#stability">Stability is a Feature</a>
+        </aside>
+    </div>
 
         <footer>
             <p>&copy; 2026 OpenGameStack.org. Dual-use technology for open simulation.</p>
