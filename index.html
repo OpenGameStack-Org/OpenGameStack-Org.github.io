@@ -28,11 +28,27 @@
 
         a {
             text-decoration: none;
-            transition: 0.3s;
+            transition: color 0.3s, transform 0.3s, border-color 0.3s;
         }
 
         ul {
             list-style: none;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 16px;
+            background: #ffffff;
+            color: #0f172a;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 16px;
         }
 
         /* --- COLORS & VARIABLES --- */
@@ -94,6 +110,12 @@
             color: white;
         }
 
+        .nav-link:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
         /* --- HERO SECTION --- */
         .hero {
             padding: 5rem 0;
@@ -125,22 +147,36 @@
             border-radius: 6px;
             font-weight: 700;
             font-size: 1rem;
+            transition: transform 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
         }
 
         .btn:hover {
             background: #bae6fd;
             transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(56, 189, 248, 0.35);
         }
 
         .btn-outline {
             background: transparent;
             border: 1px solid var(--secondary);
             color: white;
-            margin-left: 10px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .btn-outline:hover {
             border-color: white;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+            box-shadow: 0 10px 24px rgba(56, 189, 248, 0.35);
         }
 
         /* --- FEATURES GRID --- */
@@ -189,6 +225,17 @@
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                max-width: 320px;
             }
 
             .grid {
@@ -204,8 +251,9 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="container">
+    <div class="container" id="main">
         <header>
             <div class="logo">
                 <img src="logo.png" alt="Open Game Stack Logo">
@@ -220,7 +268,7 @@
         <section class="hero">
             <h1>Build Games.<br>Own the Stack.</h1>
             <p>The universal standard for sovereign, version-controlled open source game development.</p>
-            <div>
+            <div class="hero-actions">
                 <a href="https://github.com/OpenGameStack-Org" class="btn">View on GitHub</a>
                 <a href="manifesto.html" class="btn btn-outline">Read the Manifesto</a>
             </div>
